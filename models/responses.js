@@ -6,15 +6,16 @@ const ResponseSchema = new Schema(
     id: String,
     linkedTo: {
       type: Schema.Types.ObjectId,
-      ref: 'Question'
+      ref: "Question",
     }, // References question
     alignment: {
       type: String,
-      enum: ['lawful', 'neutral', 'chaotic']
+      enum: ["lawful", "neutral", "chaotic"],
     },
     response: String,
-    game_ending: Boolean
-  }
-)
+    game_ending: Boolean,
+  },
+  { versionKey: false },
+);
 
-module.exports = mongoose.model('Response', ResponseSchema);
+module.exports = mongoose.model("Response", ResponseSchema);
