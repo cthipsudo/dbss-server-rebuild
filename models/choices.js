@@ -3,24 +3,31 @@ const Schema = mongoose.Schema;
 
 const ChoiceSchema = new Schema(
   {
-    id: String,
-    linkedTo: String, 
+    linkedTo: String,
     choiceType: {
       type: String,
-      enum: ['goblin', 'alien', 'human', 'space_wizard', 'astral_thief', 'cosmic_warrior', 'default']
+      enum: [
+        "goblin",
+        "alien",
+        "human",
+        "space_wizard",
+        "astral_thief",
+        "cosmic_warrior",
+        "default",
+      ],
     },
     choice: String,
     alignment: {
       type: String,
-      enum: ['chaotic', 'neutral', 'lawful']
+      enum: ["chaotic", "neutral", "lawful"],
     },
     score: Number,
-    health_lost: Number
-  }
+    health_lost: Number,
+  },
+  { versionKey: false },
 );
 
 module.exports = mongoose.model("Choice", ChoiceSchema);
-
 
 // CREATE TYPE choiceLimit as ENUM ('goblin', 'alien', 'human', 'space_wizard', 'astral_thief', 'cosmic_warrior', 'default');
 // CREATE TYPE responseAlignment as ENUM ('chaotic', 'neutral', 'lawful');
@@ -34,4 +41,3 @@ module.exports = mongoose.model("Choice", ChoiceSchema);
 //   score int NOT NULL,
 //   health_lost int NOT NULL
 // );
-

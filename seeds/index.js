@@ -1,7 +1,7 @@
-const cities = require("./cities");
-const { descriptors, places } = require("./seedHelpers");
+const choicesData = require("./choices");
+const Choice = require("../models/choices");
+// const { descriptors, places } = require("./seedHelpers");
 const mongoose = require("mongoose");
-const Campground = require("../models/campground");
 
 mongoose.connect("mongodb://127.0.0.1:27017/dbss");
 
@@ -11,11 +11,13 @@ db.once("open", () => {
   console.log("Database Connected!");
 });
 
-const sample = (arr) => {
-  return arr[Math.floor(Math.random() * arr.length)];
-};
-
 const seedDB = async () => {
+  await Choice.deleteMany({});
+
+  for (let choice of choicesData) {
+    const choiceEntry = await new Choice(choice);
+    await choiceEntry.save();
+  }
   // await Campground.deleteMany({});
 
   // for (let i = 0; i < 200; i++) {
@@ -44,7 +46,7 @@ const seedDB = async () => {
   //     ],
   //   });
   //   await campground.save();
-  }
+  // }
   console.log("Job's done!");
 };
 
