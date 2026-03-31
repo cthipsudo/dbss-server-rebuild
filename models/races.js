@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const RaceSchema = new Schema(
   {
-    id: String,
-    race_name: String
-  }
-)
+    race_name: String,
+  },
+  { versionKey: false },
+);
 
-module.exports = mongoose.model('Race', RaceSchema);
+module.exports = mongoose.model("Race", RaceSchema);

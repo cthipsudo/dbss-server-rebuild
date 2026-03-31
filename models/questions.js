@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema(
   {
-    id: String,
     linkedTo: String,
-    question: String
-  }
+    question: String,
+  },
+  { versionKey: false },
 );
 
 module.exports = mongoose.model("Question", QuestionSchema);

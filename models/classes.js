@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const ClassSchema = new Schema(
   {
-    id: String,
-    class_name: String
-  }
+    class_name: String,
+  },
+  { versionKey: false },
 );
 
-module.exports = mongoose.model('Class', ClassSchema)
+module.exports = mongoose.model("Class", ClassSchema);
