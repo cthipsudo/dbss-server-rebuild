@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
-const { required } = require("joi");
 const Schema = mongoose.Schema;
 
 const ChoiceSchema = new Schema(
   {
     id: String,
-    linkedTo: String, // needs to reference the questions
+    linkedTo: String, 
     choiceType: {
       type: String,
       enum: ['goblin', 'alien', 'human', 'space_wizard', 'astral_thief', 'cosmic_warrior', 'default']
