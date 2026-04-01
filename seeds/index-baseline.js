@@ -34,11 +34,6 @@ const seedDB = async () => {
   await insertEntries(classData, CharClass);
   await insertEntries(raceData, CharRace);
 
-  // for (let question of questionData) {
-  //   const questionEntry = await new Question(question);
-  //   await questionEntry.save();
-  // }
-
   console.log("Job's done!");
 };
 
