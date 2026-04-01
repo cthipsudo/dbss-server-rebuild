@@ -6,7 +6,12 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const engine = require("ejs-mate");
-const apiRoutes = require("./routes/api");
+const helmet = require("helmet");
+const cors = require("cors");
+const choicesRoute = require("./routes/choices");
+const apiRoute = require("./routes/api");
+const questionsRoute = require("./routes/questions");
+const responsesRoute = require("./routes/responses");
 
 const mongoose = require("mongoose");
 const db_url = process.env.DB_URL || "mongodb://127.0.0.1:27017/dbss";
@@ -19,10 +24,13 @@ db.once("open", () => {
 });
 
 app.engine("ejs", engine);
-// app.set("view engine", "ejs");
-// app.set("views", path.join(__dirname, "views"));
+app.use(helmet());
+app.use(cors({ origin: "http://localhost:3001" }));
 
-app.use("/", apiRoutes);
+app.use("/api", apiRoute);
+app.use("/api/choices", choicesRoute);
+app.use("/api/questions", questionsRoute);
+app.use("/api/responses", responsesRoute);
 
 app.listen(3000, () => {
   console.log("App is listening!");

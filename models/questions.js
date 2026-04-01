@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema(
   {
+    gameID: String,
     linkedTo: String,
     question: String,
   },
