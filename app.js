@@ -8,6 +8,9 @@ const path = require("path");
 const engine = require("ejs-mate");
 const helmet = require("helmet");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+
+const mongoSanitize = require("express-mongo-sanitize");
 const choicesRoute = require("./routes/choices");
 const apiRoute = require("./routes/api");
 const questionsRoute = require("./routes/questions");
@@ -26,7 +29,10 @@ db.once("open", () => {
 app.engine("ejs", engine);
 app.use(helmet());
 app.use(cors({ origin: "https://dbss-client.vercel.app" }));
+app.use(express.json({ limit: "10kb" }));
+app.use(mongoSanitize());
 
+app.use("/api", rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use("/api", apiRoute);
 app.use("/api/choices", choicesRoute);
 app.use("/api/questions", questionsRoute);
