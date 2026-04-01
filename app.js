@@ -26,6 +26,7 @@ db.once("open", () => {
   console.log("Database Connected!");
 });
 
+app.set("trust proxy", 1);
 app.engine("ejs", engine);
 app.use(helmet());
 app.use(cors({ origin: "https://dbss-client.vercel.app" }));
