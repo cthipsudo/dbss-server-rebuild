@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config(); // need this for .env
+}
+
 const questionData = require("./questions");
 const Question = require("../models/questions");
 const classData = require("./classes");
@@ -11,7 +15,8 @@ const Response = require("../models/responses");
 const { deleteEntries, insertEntries } = require("./seedHelpers");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/dbss");
+const db_url = process.env.DB_URL || "mongodb://127.0.0.1:27017/dbss";
+mongoose.connect(db_url);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));

@@ -25,7 +25,7 @@ db.once("open", () => {
 
 app.engine("ejs", engine);
 app.use(helmet());
-app.use(cors({ origin: "http://localhost:3001" }));
+app.use(cors({ origin: "https://dbss-server-rebuild.vercel.app/" }));
 
 app.use("/api", apiRoute);
 app.use("/api/choices", choicesRoute);
