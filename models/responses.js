@@ -4,10 +4,7 @@ const Schema = mongoose.Schema;
 const ResponseSchema = new Schema(
   {
     id: String,
-    linkedTo: {
-      type: Schema.Types.ObjectId,
-      ref: "Question",
-    }, // References question
+    linkedTo: String, // References question
     alignment: {
       type: String,
       enum: ["lawful", "neutral", "chaotic"],
